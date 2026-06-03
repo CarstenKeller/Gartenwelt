@@ -2,20 +2,17 @@ import './styles.css';
 import { HomeScreen }       from './screens/HomeScreen';
 import { ProcessingScreen } from './screens/ProcessingScreen';
 import { ViewerScreen }     from './screens/ViewerScreen';
-import type { PointCloud }  from './services/pointCloudGenerator';
+import type { SceneData }   from './services/sceneBuilder';
 
 const app = document.getElementById('app')!;
-let currentScreen: { destroy(): void } | null = null;
+let current: { destroy(): void } | null = null;
 
-function show(screen: { destroy(): void }) {
-  currentScreen?.destroy();
-  currentScreen = screen;
-}
+function show(s: { destroy(): void }) { current?.destroy(); current = s; }
 
 function goHome() {
   show(new HomeScreen(app, (file) => {
     show(new ProcessingScreen(app, file,
-      (cloud: PointCloud) => show(new ViewerScreen(app, cloud, goHome)),
+      (scene: SceneData) => show(new ViewerScreen(app, scene, goHome)),
       goHome
     ));
   }));
