@@ -28,8 +28,7 @@
     },
     "plugins": [
       "expo-router",
-      "expo-document-picker",
-      "react-native-reanimated"
+      "expo-document-picker"
     ],
     "scheme": "gartenwelt",
     "experiments": {
