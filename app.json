@@ -29,8 +29,7 @@
     "plugins": [
       "expo-router",
       "expo-document-picker",
-      "react-native-reanimated",
-      "react-native-fast-tflite"
+      "react-native-reanimated"
     ],
     "scheme": "gartenwelt",
     "experiments": {
