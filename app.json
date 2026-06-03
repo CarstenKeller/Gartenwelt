@@ -8,8 +8,6 @@
     "android": {
       "package": "de.gartenwelt.app"
     },
-    "plugins": [
-      "expo-document-picker"
-    ]
+    "plugins": []
   }
 }
