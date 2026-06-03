@@ -4,35 +4,12 @@
     "slug": "gartenwelt",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#1a2e1a"
-    },
-    "ios": {
-      "supportsTablet": false,
-      "bundleIdentifier": "de.gartenwelt.app"
-    },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#1a2e1a"
-      },
-      "package": "de.gartenwelt.app",
-      "permissions": [
-        "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE"
-      ]
+      "package": "de.gartenwelt.app"
     },
     "plugins": [
-      "expo-router",
       "expo-document-picker"
-    ],
-    "scheme": "gartenwelt",
-    "experiments": {
-      "typedRoutes": true
-    }
+    ]
   }
 }
