@@ -29,12 +29,7 @@
     "plugins": [
       "expo-router",
       "expo-document-picker",
-      [
-        "ffmpeg-kit-react-native",
-        {
-          "package": "min"
-        }
-      ],
+      "react-native-reanimated",
       "react-native-fast-tflite"
     ],
     "scheme": "gartenwelt",
