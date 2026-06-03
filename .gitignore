@@ -1,0 +1,9 @@
+node_modules/
+.expo/
+dist/
+build/
+ios/
+android/
+*.tflite
+*.apk
+*.aab

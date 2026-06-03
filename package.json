@@ -1,0 +1,33 @@
+{
+  "name": "gartenwelt",
+  "version": "1.0.0",
+  "main": "expo-router/entry",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "build:android": "eas build --platform android"
+  },
+  "dependencies": {
+    "expo": "~52.0.0",
+    "expo-router": "~4.0.0",
+    "expo-status-bar": "~2.0.0",
+    "expo-document-picker": "~13.0.0",
+    "expo-file-system": "~18.0.0",
+    "expo-gl": "~15.0.0",
+    "expo-sensors": "~14.0.0",
+    "ffmpeg-kit-react-native": "^6.0.2",
+    "react": "18.3.1",
+    "react-native": "0.76.5",
+    "react-native-fast-tflite": "^1.4.1",
+    "react-native-gesture-handler": "~2.20.0",
+    "three": "^0.170.0",
+    "expo-three": "^8.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@types/react": "~18.3.0",
+    "@types/three": "^0.170.0",
+    "typescript": "~5.3.0"
+  }
+}
