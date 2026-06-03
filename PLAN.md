@@ -1,44 +1,46 @@
 # PLAN.md – Gartenwelt Iteration 1
 
 ## Ziel
-Android-App, die ein MP4-Gartenvideo in eine begehbare 3D-Punktwolke umwandelt.
-Navigation wahlweise per virtuellem Joystick oder Swipe/Gyroscop.
+Progressive Web App (Android-Browser), die ein MP4-Gartenvideo in
+eine begehbare 3D-Punktwolke umwandelt.
 
-## Architektur
+## Plattform-Entscheidung
+React Native / Expo → **Web App (Vite + TypeScript)**
+Grund: Expo-Kompatibilitätsprobleme, Web bietet gleiche Qualität ohne Setup-Aufwand.
 
+## Pipeline
 ```
-3-Minuten-MP4
-   ↓ 1 Frame/Sekunde extrahieren = ~180 Frames  (ffmpeg-kit)
-   ↓ Pro Frame: MiDaS Small Tiefenkarte          (TFLite ~0,3s/Frame)
-   ↓ Frame + Tiefenkarte → 3D-Punkte mit Farbe
-   ↓ Alle Frames zusammenführen → Punktwolke
-   ↓ Three.js Viewer mit freier Bewegung
+MP4-Video
+   ↓ Canvas-API: 1 Frame/Sekunde extrahieren
+   ↓ TensorFlow.js MiDaS: Tiefenkarte pro Frame (WebGL-beschleunigt)
+   ↓ Punktwolken-Generator: RGB + Tiefe → 3D-Koordinaten
+   ↓ Three.js Viewer: Freie Navigation mit Touch-Steuerung
 ```
 
 ## Stack
-- Framework: Expo (EAS Dev Build)
-- Frame-Extraktion: ffmpeg-kit-react-native
-- Tiefenschätzung: react-native-fast-tflite + MiDaS Small (~14MB)
-- 3D-Rendering: expo-gl + three.js + expo-three
-- Gesten: react-native-gesture-handler
-- Gyroscop: expo-sensors
-- Navigation: expo-router
-
-## App-Screens
-1. Home – Video auswählen, Verarbeitung starten
-2. Processing – Fortschritt (Frames → Tiefe → Punktwolke)
-3. Viewer – 3D-Navigation mit umschaltbarer Steuerung
+- Build:      Vite + TypeScript
+- 3D:         Three.js
+- KI-Tiefe:   TensorFlow.js + MiDaS Small
+- Steuerung:  Virtueller Joystick (Touch) + Gyroscop-Modus
+- Verteilung: PWA (im Android-Browser installierbar)
 
 ## Implementierungsschritte
 
-- [x] Schritt 1   Expo-Projekt initialisieren + alle Abhängigkeiten installieren
-- [x] Schritt 2   Home Screen: Video aus Galerie wählen (expo-document-picker)
-- [x] Schritt 3   Frame-Extraktion (ffmpeg-kit-react-native, 1fps, ~180 Frames)
-- [x] Schritt 4   MiDaS-Tiefenschätzung pro Frame (react-native-fast-tflite)
-- [x] Schritt 5   Punktwolken-Erzeugung: RGB + Tiefe → 3D-Koordinaten
-- [x] Schritt 6   Processing Screen mit Fortschrittsanzeige (3 Phasen)
-- [x] Schritt 7   Three.js Viewer: Punktwolke laden + rendern (expo-gl)
-- [x] Schritt 8   Steuerung Modus A: Virtueller Joystick
-- [x] Schritt 9   Steuerung Modus B: Swipe + Gyroscop
-- [x] Schritt 10  Steuerung umschalten: Toggle-Button im Viewer
-- [ ] Schritt 11  Test mit echtem Gartenvideo + Performance-Optimierung
+- [x] Schritt 1   Vite + TypeScript Projekt-Setup
+- [x] Schritt 2   Home Screen: Video aus Galerie wählen
+- [x] Schritt 3   Frame-Extraktion via Canvas-API (1fps)
+- [x] Schritt 4   TF.js MiDaS Tiefenschätzung (mit Fallback)
+- [x] Schritt 5   Punktwolken-Generator
+- [x] Schritt 6   Processing Screen mit 3-Phasen-Fortschritt
+- [x] Schritt 7   Three.js Viewer mit Fog + VertexColors
+- [x] Schritt 8   Virtueller Joystick (zwei Sticks, Multi-Touch)
+- [x] Schritt 9   Gyroscop-Modus als Alternative
+- [x] Schritt 10  HUD: Zurück-Button + Modus-Toggle
+- [ ] Schritt 11  Test mit echtem Gartenvideo
+
+## Starten (Termux)
+```bash
+npm install
+npm run dev
+# Browser öffnen: http://192.168.x.x:5173
+```
